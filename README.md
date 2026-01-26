@@ -10,7 +10,7 @@
 
 Personal dotfiles featuring an Agnoster-inspired Starship prompt with powerline arrows, modern CLI tools, and a beautiful terminal setup.
 
-## ✨ Features
+## Features
 
 ### 🚀 Starship Prompt (Agnoster-Style)
 - **Powerline aesthetics** with colored segments and arrow separators
