@@ -1,0 +1,168 @@
+# ============================================
+# Starship Prompt
+# ============================================
+eval "$(starship init zsh)"
+
+# ============================================
+# ZSH Plugins
+# ============================================
+# Fish-like autosuggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Syntax highlighting (must be last plugin sourced)
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Alias hints (learn shortcuts as you work)
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
+[[ -f "$DOTFILES_DIR/zsh/alias-hints.zsh" ]] && source "$DOTFILES_DIR/zsh/alias-hints.zsh"
+
+# Optional alias library (uncomment what you want)
+# source "$DOTFILES_DIR/zsh/aliases-library.zsh"
+
+# ============================================
+# Modern CLI Tools
+# ============================================
+# fzf - Fuzzy finder (Ctrl+R for history, Ctrl+T for files)
+eval "$(fzf --zsh)"
+
+# zoxide - Smarter cd (use 'z' to jump to frequent directories)
+eval "$(zoxide init zsh)"
+
+# ============================================
+# Aliases
+# ============================================
+alias zshrc="code ~/.zshrc"
+alias p='pnpm'
+alias pi='pnpm install'
+alias pb='pnpm build'
+alias pd='pnpm dev'
+alias pl='pnpm lint'
+# alias ps='pnpm start'
+alias pt='pnpm test'
+alias story='pnpm storybook'
+alias sb='pnpm storybook:build'
+alias new="git checkout -b"
+alias ch="git checkout"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias empty='git commit --allow-empty -m'
+alias 3000='lsof -i :3000'
+# Work-specific aliases moved to ~/.zshrc.local
+
+# Modern CLI tool aliases
+alias ls='eza --icons'
+alias ll='eza -l --icons --git'
+alias la='eza -la --icons --git'
+alias lt='eza --tree --icons'
+alias cat='bat'
+
+# ============================================
+# Environment & PATH
+# ============================================
+
+# NVM - Lazy loaded for faster shell startup
+export NVM_DIR="$HOME/.nvm"
+
+# Flag to track if nvm is loaded
+_NVM_LOADED=0
+
+# Load nvm function (idempotent - safe to call multiple times)
+load_nvm() {
+  if [ "$_NVM_LOADED" = "0" ]; then
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+    _NVM_LOADED=1
+  fi
+}
+
+# Lazy-loading wrapper functions
+nvm() {
+  load_nvm
+  command nvm "$@"
+}
+node() {
+  load_nvm
+  command node "$@"
+}
+npm() {
+  load_nvm
+  command npm "$@"
+}
+npx() {
+  load_nvm
+  command npx "$@"
+}
+
+# Auto-switch Node version based on .nvmrc
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local nvmrc_path
+  nvmrc_path="$(nvm_find_nvmrc 2>/dev/null)"
+
+  if [ -n "$nvmrc_path" ]; then
+    # Load nvm if not already loaded
+    load_nvm
+
+    local nvmrc_node_version
+    nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      echo "Installing Node version from .nvmrc..."
+      nvm install
+    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+      nvm use --silent
+    fi
+  fi
+}
+
+# Helper function to find .nvmrc (works with lazy-loaded nvm)
+nvm_find_nvmrc() {
+  local dir="$PWD"
+  while [ "$dir" != "/" ]; do
+    if [ -f "$dir/.nvmrc" ]; then
+      echo "$dir/.nvmrc"
+      return
+    fi
+    dir=$(dirname "$dir")
+  done
+}
+
+# Run on directory change
+add-zsh-hook chpwd load-nvmrc
+
+# Run on shell startup
+load-nvmrc
+
+# Libpq
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export CFLAGS="-Wno-error=implicit-function-declaration"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# pnpm
+# export PNPM_HOME="/opt/homebrew/bin/pnpm"
+# case ":$PATH:" in
+#   *":$PNPM_HOME:"*) ;;
+#   *) export PATH="$PNPM_HOME:$PATH" ;;
+# esac
+# Note: pnpm is already in PATH via Homebrew, PNPM_HOME not needed
+
+# pipx
+export PATH="$HOME/.local/bin:$PATH"
+
+# PostgreSQL
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH="/opt/homebrew/opt/pnpm@8/bin:$PATH"
+
+# 1Password SSH Agent
+export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+
+# ============================================
+# Machine Specific Overrides
+# ============================================
+# Machine specific overrides (not in git)
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

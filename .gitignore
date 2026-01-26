@@ -1,0 +1,64 @@
+# Machine-specific configuration (may contain secrets)
+.zshrc.local
+
+# Backup directories created by install script
+dotfiles_backup_*/
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Thumbnails
+Thumbs.db
+
+# Files that might contain secrets or tokens
+*.env
+*.env.local
+*.env.*.local
+.env
+.env.*
+*_history
+.bash_history
+.zsh_history
+*_token
+*_secret
+*.key
+*.pem
+*.p12
+*.pfx
+credentials.json
+credentials.yml
+credentials.yaml
+secrets.json
+secrets.yml
+secrets.yaml
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.*.sw?
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.cache
+
+# Node modules (if any scripts use Node)
+node_modules/
+
+# Python cache (if any scripts use Python)
+__pycache__/
+*.pyc
+*.pyo
+
+# Backup files
+*.backup
+*.bak
+*.old
+*~

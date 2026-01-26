@@ -1,0 +1,87 @@
+# Starship configuration - Agnoster-inspired theme
+# https://starship.rs/config/
+
+# Agnoster-style format with powerline arrows
+format = """[\\(╯°□°\\)╯︵ ┻━┻](bold yellow) \
+[](bg:#4A90E2 fg:black)\
+$username\
+[](bg:#50C878 fg:#4A90E2)\
+$directory\
+[](fg:#50C878 bg:#FF69B4)\
+$git_branch\
+$git_status\
+[](fg:#FF69B4 bg:none) \
+$nodejs\
+$python\
+$rust\
+$golang\
+$cmd_duration\
+$line_break\
+$character"""
+
+# Username - Blue background
+[username]
+show_always = true
+format = "[ hoop ](bg:#4A90E2 fg:black bold)"
+
+# Directory - Emerald green background
+[directory]
+truncation_length = 3
+truncate_to_repo = false
+truncation_symbol = "…/"
+format = "[ $path ](bg:#50C878 fg:black bold)"
+style = "bg:#50C878 fg:black"
+
+# Git branch - Hot pink background
+[git_branch]
+symbol = " "
+format = "[ $symbol$branch ](bg:#FF69B4 fg:black bold)"
+style = "bg:#FF69B4 fg:black"
+
+# Git status - Hot pink background
+[git_status]
+format = "[$all_status$ahead_behind](bg:#FF69B4 fg:black bold)"
+style = "bg:#FF69B4 fg:black"
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?"
+stashed = "$$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+# Language versions (no background, just icons)
+[nodejs]
+format = "via [$symbol($version )]($style)"
+symbol = " "
+style = "bold green"
+
+[python]
+format = "via [$symbol($version )]($style)"
+symbol = " "
+style = "bold yellow"
+
+[rust]
+format = "via [$symbol($version )]($style)"
+symbol = " "
+style = "bold red"
+
+[golang]
+format = "via [$symbol($version )]($style)"
+symbol = " "
+style = "bold cyan"
+
+# Command duration (show if > 2s)
+[cmd_duration]
+min_time = 2000
+format = "took [$duration]($style) "
+style = "bold yellow"
+
+# Character (prompt symbol) - Agnoster uses ❯
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[✘](bold red)"
+vimcmd_symbol = "[❮](bold green)"

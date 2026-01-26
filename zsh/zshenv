@@ -1,0 +1,9 @@
+# .zshenv: Environment variables for all shells
+# Keep this minimal - interactive config goes in .zshrc
+
+# Minimal, fast, universal
+export ZDOTDIR="$HOME"
+export LANG="en_US.UTF-8"
+
+# Cargo (Rust) environment
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
