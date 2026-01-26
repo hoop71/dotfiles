@@ -1,7 +1,12 @@
 # Flip The Script `(╯°□°)╯︵ ┻━┻`
-### Overthrowing default configs
 
-<img width="399" height="63" alt="image" src="https://github.com/user-attachments/assets/5ed5069b-3a29-4489-bd44-e33bc111f667" />
+<p align="center">
+  <img src="docs/public/filp_the_script_banner.png" alt="Flip The Script - Modern macOS Dotfiles" width="800" />
+</p>
+
+<p align="center">
+  <strong>Stop waiting on 5-second shell loads. Millisecond startup. Zero bloat. Pure speed.</strong>
+</p>
 
 Personal dotfiles featuring an Agnoster-inspired Starship prompt with powerline arrows, modern CLI tools, and a beautiful terminal setup.
 
