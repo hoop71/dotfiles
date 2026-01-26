@@ -1,5 +1,6 @@
 # Machine-specific configuration (may contain secrets)
 .zshrc.local
+.claude/
 
 # Backup directories created by install script
 dotfiles_backup_*/
@@ -51,6 +52,11 @@ secrets.yaml
 
 # Node modules (if any scripts use Node)
 node_modules/
+
+# GitHub Pages site build
+dist/
+docs/dist/
+.astro/
 
 # Python cache (if any scripts use Python)
 __pycache__/

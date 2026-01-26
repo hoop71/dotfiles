@@ -1,0 +1,788 @@
+---
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content="Modern macOS dotfiles with Starship prompt, lazy-loaded NVM, and zero Oh-My-Zsh overhead" />
+		<title>Flip The Script - Modern macOS Dotfiles</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container">
+			<header class="hero">
+				<div class="banner-image">
+					<img src="/filp_the_script_banner.png" alt="Flip The Script - Modern macOS Dotfiles" />
+				</div>
+				<p class="tagline">
+					<strong>Flip the script.</strong> Stop waiting on 5-second shell loads.<br>
+					Millisecond startup. Zero bloat. Pure speed.
+				</p>
+				<div class="hero-links">
+					<a href="https://github.com/hoop71/flip_the_script" target="_blank" rel="noopener" class="github-link">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+						View on GitHub
+					</a>
+				</div>
+
+				<div class="install-box">
+					<code class="install-command">
+						curl -fsSL https://raw.githubusercontent.com/hoop71/flip_the_script/main/install.sh | bash
+					</code>
+					<button class="copy-btn" onclick="copyInstall()">Copy</button>
+				</div>
+			</header>
+
+			<section class="features">
+				<div class="feature-grid">
+					<div class="feature">
+						<div class="feature-icon">⚡</div>
+						<h3>Lightning Fast</h3>
+						<p>Starship prompt loads in ~10ms. NVM lazy-loads only when needed. No Oh-My-Zsh overhead.</p>
+					</div>
+
+					<div class="feature">
+						<div class="feature-icon">🎨</div>
+						<h3>Agnoster Style</h3>
+						<p>Beautiful powerline prompt with custom colors. Yellow table flip, blue username, emerald directory, hot pink git.</p>
+					</div>
+
+					<div class="feature">
+						<div class="feature-icon">🛠️</div>
+						<h3>Modern Tools</h3>
+						<p>Pre-configured with eza, bat, fzf, zoxide, and more. Better versions of classic Unix tools.</p>
+					</div>
+
+					<div class="feature">
+						<div class="feature-icon">🔄</div>
+						<h3>Idempotent Install</h3>
+						<p>Run the installer anytime. Backs up existing configs, creates symlinks, safe to re-run.</p>
+					</div>
+
+					<div class="feature">
+						<div class="feature-icon">🔌</div>
+						<h3>ZSH Plugins</h3>
+						<p>Autosuggestions and syntax highlighting built in. Smart completions out of the box.</p>
+					</div>
+
+					<div class="feature">
+						<div class="feature-icon">📦</div>
+						<h3>CLI Manager</h3>
+						<p>Built-in dotfiles command for checking health, browsing aliases, and learning shortcuts.</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="demo">
+				<h2>See It In Action</h2>
+				<div class="terminal">
+					<div class="terminal-header">
+						<span class="terminal-button red"></span>
+						<span class="terminal-button yellow"></span>
+						<span class="terminal-button green"></span>
+						<span class="terminal-title">zsh</span>
+					</div>
+					<div class="terminal-body">
+						<div class="prompt-line">
+							<span class="flip-emoji">(╯°□°)╯︵ ┻━┻</span>
+							<span class="username">hoop</span>
+							<span class="directory">~/code/project</span>
+							<span class="git-branch"> main</span>
+							<span class="git-status">!?</span>
+							<span class="prompt-symbol">❯</span>
+							<span class="cursor">_</span>
+						</div>
+					</div>
+				</div>
+				<p class="demo-caption">Your new prompt: Fast, informative, and impossible to rage-quit</p>
+			</section>
+
+			<section class="quick-start">
+				<h2>Quick Start</h2>
+				<div class="steps">
+					<div class="step">
+						<div class="step-number">1</div>
+						<div class="step-content">
+							<h4>Install</h4>
+							<div class="code-block">
+								<code>curl -fsSL https://raw.githubusercontent.com/hoop71/flip_the_script/main/install.sh | bash</code>
+								<button class="copy-code-btn" onclick="copyCode(this, 'curl -fsSL https://raw.githubusercontent.com/hoop71/flip_the_script/main/install.sh | bash')">Copy</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="step">
+						<div class="step-number">2</div>
+						<div class="step-content">
+							<h4>Reload Shell</h4>
+							<div class="code-block">
+								<code>exec zsh</code>
+								<button class="copy-code-btn" onclick="copyCode(this, 'exec zsh')">Copy</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="step">
+						<div class="step-number">3</div>
+						<div class="step-content">
+							<h4>Set Your Font</h4>
+							<p>Configure your terminal to use a Nerd Font (e.g., MesloLGS Nerd Font) for proper icon display</p>
+						</div>
+					</div>
+
+					<div class="step">
+						<div class="step-number">4</div>
+						<div class="step-content">
+							<h4>Verify</h4>
+							<div class="code-block">
+								<code>dotfiles check</code>
+								<button class="copy-code-btn" onclick="copyCode(this, 'dotfiles check')">Copy</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<footer>
+				<p>
+					<a href="https://github.com/hoop71/flip_the_script" target="_blank" rel="noopener">View on GitHub</a>
+					·
+					<a href="https://github.com/hoop71/flip_the_script/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+				</p>
+			</footer>
+		</div>
+
+		<style>
+			:root {
+				--color-bg: #0d1117;
+				--color-bg-secondary: #161b22;
+				--color-text: #e6edf3;
+				--color-text-muted: #9198a1;
+				--color-border: #30363d;
+				--color-yellow: #ffd700;
+				--color-blue: #4A90E2;
+				--color-emerald: #50C878;
+				--color-pink: #FF69B4;
+				--color-purple: #9580ff;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				background: var(--color-bg);
+				color: var(--color-text);
+				line-height: 1.6;
+				overflow-x: hidden;
+				-webkit-font-smoothing: antialiased;
+			}
+
+			code, pre {
+				font-family: 'JetBrains Mono', 'Courier New', monospace;
+			}
+
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 2rem;
+				width: 100%;
+			}
+
+			/* Hero Section */
+			.hero {
+				text-align: center;
+				padding: 2rem 0 3rem;
+			}
+
+			.banner-image {
+				margin-bottom: 1.5rem;
+				max-width: 700px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.banner-image img {
+				width: 100%;
+				height: auto;
+				border-radius: 12px;
+				box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+			}
+
+			.tagline {
+				font-size: 1.25rem;
+				color: var(--color-text);
+				margin-bottom: 1.5rem;
+				line-height: 1.6;
+				max-width: 800px;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			.tagline strong {
+				color: var(--color-yellow);
+				font-weight: 900;
+			}
+
+			.hero-links {
+				margin-bottom: 2rem;
+			}
+
+			.github-link {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.75rem 1.5rem;
+				background: transparent;
+				border: 2px solid var(--color-border);
+				border-radius: 8px;
+				color: var(--color-text);
+				text-decoration: none;
+				font-weight: 600;
+				transition: all 0.2s;
+			}
+
+			.github-link:hover {
+				border-color: var(--color-text);
+				background: rgba(255, 255, 255, 0.05);
+				transform: translateY(-2px);
+			}
+
+			.github-link svg {
+				flex-shrink: 0;
+			}
+
+			.install-box {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.75rem;
+				background: var(--color-bg-secondary);
+				border: 2px solid var(--color-emerald);
+				border-radius: 8px;
+				padding: 1rem 1.25rem;
+				max-width: 90%;
+				min-width: 0;
+			}
+
+			.install-command {
+				color: var(--color-emerald);
+				font-size: 0.9rem;
+				word-break: break-all;
+				overflow-wrap: break-word;
+				min-width: 0;
+			}
+
+			.copy-btn {
+				background: var(--color-emerald);
+				color: #000;
+				border: none;
+				padding: 0.5rem 1.25rem;
+				border-radius: 6px;
+				cursor: pointer;
+				font-weight: 700;
+				white-space: nowrap;
+				transition: all 0.2s;
+			}
+
+			.copy-btn:hover {
+				background: var(--color-pink);
+				transform: translateY(-2px);
+				box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+			}
+
+			/* Features Section */
+			.features {
+				padding: 3rem 0 2rem;
+			}
+
+			.feature-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+				gap: 1.5rem;
+			}
+
+			.feature {
+				background: var(--color-bg-secondary);
+				border: 1px solid var(--color-border);
+				border-radius: 10px;
+				padding: 1.5rem;
+				transition: all 0.3s;
+				min-width: 0;
+			}
+
+			.feature:hover {
+				border-color: var(--color-emerald);
+				transform: translateY(-4px);
+				box-shadow: 0 8px 24px rgba(80, 200, 120, 0.15);
+			}
+
+			.feature-icon {
+				font-size: 2.5rem;
+				margin-bottom: 0.75rem;
+			}
+
+			.feature h3 {
+				font-size: 1.25rem;
+				margin-bottom: 0.5rem;
+				color: var(--color-text);
+			}
+
+			.feature p {
+				color: #a8b3c1;
+				font-size: 0.95rem;
+				line-height: 1.5;
+			}
+
+			/* Demo Terminal */
+			.demo {
+				padding: 2rem 0 3rem;
+				text-align: center;
+			}
+
+			.demo h2 {
+				font-size: 2rem;
+				margin-bottom: 2rem;
+			}
+
+			.terminal {
+				max-width: 800px;
+				margin: 0 auto;
+				background: #1e1e1e;
+				border-radius: 8px;
+				overflow: hidden;
+				box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+				width: 100%;
+			}
+
+			.terminal-header {
+				background: #323232;
+				padding: 0.75rem 1rem;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			.terminal-button {
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+			}
+
+			.terminal-button.red { background: #ff5f56; }
+			.terminal-button.yellow { background: #ffbd2e; }
+			.terminal-button.green { background: #27c93f; }
+
+			.terminal-title {
+				margin-left: auto;
+				margin-right: auto;
+				color: #8b8b8b;
+				font-size: 0.9rem;
+			}
+
+			.terminal-body {
+				padding: 2rem;
+				text-align: left;
+				font-size: 1.1rem;
+			}
+
+			.prompt-line {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				flex-wrap: wrap;
+			}
+
+			.flip-emoji {
+				color: var(--color-yellow);
+				font-weight: bold;
+			}
+
+			.username {
+				background: var(--color-blue);
+				color: black;
+				padding: 0.25rem 0.75rem;
+				font-weight: bold;
+			}
+
+			.directory {
+				background: var(--color-emerald);
+				color: black;
+				padding: 0.25rem 0.75rem;
+				font-weight: bold;
+			}
+
+			.git-branch {
+				background: var(--color-pink);
+				color: black;
+				padding: 0.25rem 0.75rem;
+				font-weight: bold;
+			}
+
+			.git-status {
+				background: var(--color-pink);
+				color: black;
+				padding: 0.25rem 0.5rem;
+				font-weight: bold;
+			}
+
+			.prompt-symbol {
+				color: var(--color-emerald);
+				font-weight: bold;
+				font-size: 1.3rem;
+			}
+
+			.cursor {
+				animation: blink 1s infinite;
+				color: var(--color-text);
+			}
+
+			@keyframes blink {
+				0%, 50% { opacity: 1; }
+				51%, 100% { opacity: 0; }
+			}
+
+			.demo-caption {
+				margin-top: 2rem;
+				color: var(--color-text-muted);
+				font-style: italic;
+			}
+
+			/* Quick Start */
+			.quick-start {
+				padding: 3rem 0;
+			}
+
+			.quick-start h2 {
+				font-size: 2rem;
+				text-align: center;
+				margin-bottom: 2rem;
+			}
+
+			.steps {
+				display: flex;
+				flex-direction: column;
+				gap: 1.5rem;
+			}
+
+			.step {
+				display: flex;
+				gap: 1.5rem;
+				align-items: flex-start;
+			}
+
+			.step-number {
+				flex-shrink: 0;
+				width: 3rem;
+				height: 3rem;
+				background: var(--color-blue);
+				color: white;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.5rem;
+				font-weight: bold;
+			}
+
+			.step-content {
+				flex: 1;
+			}
+
+			.step-content h4 {
+				font-size: 1.25rem;
+				margin-bottom: 0.5rem;
+			}
+
+			.code-block {
+				position: relative;
+				margin-top: 0.5rem;
+				display: flex;
+				align-items: center;
+				background: var(--color-bg-secondary);
+				border: 1px solid var(--color-border);
+				border-radius: 6px;
+				padding: 1rem;
+				gap: 1rem;
+			}
+
+			.step-content code {
+				flex: 1;
+				display: block;
+				background: transparent;
+				border: none;
+				padding: 0;
+				color: var(--color-emerald);
+				overflow-x: auto;
+				word-break: break-all;
+				white-space: pre-wrap;
+			}
+
+			.copy-code-btn {
+				flex-shrink: 0;
+				background: var(--color-blue);
+				color: white;
+				border: none;
+				padding: 0.5rem 1rem;
+				border-radius: 4px;
+				cursor: pointer;
+				font-weight: 600;
+				font-size: 0.875rem;
+				transition: all 0.2s;
+				white-space: nowrap;
+			}
+
+			.copy-code-btn:hover {
+				background: var(--color-pink);
+				transform: translateY(-2px);
+			}
+
+			.step-content p {
+				color: var(--color-text-muted);
+			}
+
+			/* Footer */
+			footer {
+				text-align: center;
+				padding: 3rem 0 2rem;
+				border-top: 1px solid var(--color-border);
+				margin-top: 3rem;
+			}
+
+			footer a {
+				color: var(--color-blue);
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+
+			footer a:hover {
+				color: var(--color-pink);
+			}
+
+			/* Responsive */
+			@media (max-width: 768px) {
+				.container {
+					padding-left: 1rem;
+					padding-right: 1rem;
+					padding-top: 1rem;
+					padding-bottom: 1rem;
+				}
+
+				.hero {
+					padding: 1.5rem 0;
+				}
+
+				.banner-image {
+					margin-bottom: 1.5rem;
+				}
+
+				.banner-image img {
+					border-radius: 8px;
+				}
+
+				.tagline {
+					font-size: 1rem;
+					margin-bottom: 1.25rem;
+					line-height: 1.6;
+					padding: 0 0.5rem;
+				}
+
+				.hero-links {
+					margin-bottom: 1.5rem;
+				}
+
+				.github-link {
+					padding: 0.625rem 1.25rem;
+					font-size: 0.9375rem;
+				}
+
+				.install-box {
+					flex-direction: column;
+					width: 100%;
+					max-width: 100%;
+					padding: 1rem;
+					gap: 0.75rem;
+					box-sizing: border-box;
+				}
+
+				.install-command {
+					font-size: 0.8125rem;
+					text-align: left;
+					line-height: 1.5;
+				}
+
+				.copy-btn {
+					width: 100%;
+					padding: 0.75rem 1rem;
+					font-size: 0.9375rem;
+				}
+
+				.features {
+					padding: 2rem 0 1rem;
+				}
+
+				.feature-grid {
+					grid-template-columns: 1fr;
+					gap: 0.75rem;
+					width: 100%;
+				}
+
+				.feature {
+					padding: 1.5rem 1.25rem;
+					width: 100%;
+					box-sizing: border-box;
+				}
+
+				.feature-icon {
+					font-size: 2rem;
+				}
+
+				.feature h3 {
+					font-size: 1.125rem;
+				}
+
+				.feature p {
+					font-size: 0.9375rem;
+					line-height: 1.6;
+				}
+
+				.demo {
+					padding: 1.5rem 0 2rem;
+				}
+
+				.demo h2 {
+					font-size: 1.5rem;
+					margin-bottom: 1.5rem;
+				}
+
+				.terminal {
+					border-radius: 8px;
+				}
+
+				.terminal-body {
+					padding: 1rem;
+					font-size: 0.8125rem;
+				}
+
+				.prompt-line {
+					font-size: 0.75rem;
+					gap: 0.25rem;
+				}
+
+				.username,
+				.directory,
+				.git-branch,
+				.git-status {
+					padding: 0.125rem 0.5rem;
+					font-size: 0.75rem;
+				}
+
+				.demo-caption {
+					font-size: 0.875rem;
+					padding: 0 0.5rem;
+				}
+
+				.quick-start {
+					padding: 2rem 0 1.5rem;
+				}
+
+				.quick-start h2 {
+					font-size: 1.5rem;
+					margin-bottom: 1.5rem;
+				}
+
+				.steps {
+					gap: 1.25rem;
+				}
+
+				.step {
+					flex-direction: column;
+					gap: 0.75rem;
+				}
+
+				.step-number {
+					width: 2.5rem;
+					height: 2.5rem;
+					font-size: 1.25rem;
+				}
+
+				.step-content h4 {
+					font-size: 1.125rem;
+				}
+
+				.code-block {
+					flex-direction: column;
+					align-items: stretch;
+					padding: 0.75rem;
+					gap: 0.75rem;
+				}
+
+				.step-content code {
+					font-size: 0.8125rem;
+					padding: 0;
+				}
+
+				.copy-code-btn {
+					padding: 0.75rem 1rem;
+					font-size: 0.8125rem;
+					width: 100%;
+				}
+
+				.step-content p {
+					font-size: 0.9375rem;
+				}
+
+				footer {
+					padding: 2rem 0 1.5rem;
+					margin-top: 2rem;
+					font-size: 0.875rem;
+				}
+			}
+
+			@media (max-width: 640px) {
+				.tagline {
+					font-size: 1rem;
+				}
+
+				.install-command {
+					font-size: 0.75rem;
+				}
+
+				.feature {
+					padding: 1.25rem 1rem;
+				}
+			}
+		</style>
+
+		<script is:inline>
+			function copyInstall() {
+				const command = 'curl -fsSL https://raw.githubusercontent.com/hoop71/flip_the_script/main/install.sh | bash';
+				navigator.clipboard.writeText(command).then(() => {
+					const btn = document.querySelector('.copy-btn');
+					const originalText = btn.textContent;
+					btn.textContent = 'Copied!';
+					setTimeout(() => {
+						btn.textContent = originalText;
+					}, 2000);
+				});
+			}
+
+			function copyCode(button, text) {
+				navigator.clipboard.writeText(text).then(() => {
+					const originalText = button.textContent;
+					button.textContent = 'Copied!';
+					setTimeout(() => {
+						button.textContent = originalText;
+					}, 2000);
+				});
+			}
+		</script>
+	</body>
+</html>
